@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Optional, depending on yo
 // Routes
 
 app.use("/api/product", productRoutes);
-app.use("/api/payment", paymentRoute);
+// app.use("/api/payment", paymentRoute);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
