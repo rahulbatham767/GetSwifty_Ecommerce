@@ -9,7 +9,7 @@ const { authenticateUser } = require("../Middleware/Authentication");
 router.post("/", async (req, res) => {
   try {
     const { username, email, password, role, isAdmin } = req.body;
-
+    //
     // Check if the user already exists
     let user = await User.findOne({ email });
     if (user) {
