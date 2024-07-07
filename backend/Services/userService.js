@@ -1,5 +1,5 @@
 // src/services/userService.js
-const User = require("../models/User");
+const User = require("../Models/User");
 
 const userService = {
   getAllUsers: async () => {

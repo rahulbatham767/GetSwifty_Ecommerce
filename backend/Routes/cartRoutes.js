@@ -1,7 +1,7 @@
 // src/routes/cartRoutes.js
 const express = require("express");
 const router = express.Router();
-const Cart = require("../models/Cart");
+const Cart = require("../Models/Cart");
 
 // Create a new item in the cart
 router.post("/", async (req, res) => {

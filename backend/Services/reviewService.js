@@ -1,5 +1,5 @@
 // src/services/reviewService.js
-const Review = require("../models/Review");
+const Review = require("../Models/Review");
 
 const reviewService = {
   getAllReviews: async () => {

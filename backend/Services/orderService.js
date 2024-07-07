@@ -1,5 +1,5 @@
 // src/services/orderService.js
-const Order = require("../models/Order");
+const Order = require("../Models/Order");
 
 const orderService = {
   getAllOrders: async () => {

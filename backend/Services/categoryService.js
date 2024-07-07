@@ -1,5 +1,5 @@
 // src/services/categoryService.js
-const Category = require("../models/Category");
+const Category = require("../Models/Category");
 
 const categoryService = {
   getAllCategories: async () => {

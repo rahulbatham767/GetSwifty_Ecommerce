@@ -1,5 +1,5 @@
 // src/services/cartService.js
-const Cart = require("../models/Cart");
+const Cart = require("../Models/Cart");
 
 const cartService = {
   getCartByUserId: async (userId) => {

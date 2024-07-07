@@ -1,5 +1,5 @@
 // src/services/productService.js
-const Product = require("../models/Product");
+const Product = require("../Models/Product");
 
 const productService = {
   getAllProducts: async () => {
