@@ -9,7 +9,6 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import SingleProduct from "../pages/singleProduct/SingleProduct";
 import SingleView from "./SingleView";
 import { Button } from "../styles/Button";
 import { useDispatch } from "react-redux";

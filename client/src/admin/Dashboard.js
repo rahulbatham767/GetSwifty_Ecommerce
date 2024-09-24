@@ -1,10 +1,10 @@
 import React from "react";
 import {
   Box,
-  Text,
+   
   Heading,
   Flex,
-  Container,
+  
   Spacer,
   Card,
   HStack,
@@ -14,22 +14,7 @@ import StatisticsChart from "./StatisticsChart";
 import { NavLink } from "react-router-dom";
 
 const Dashboard = () => {
-  const seriesData = {
-    monthDataSeries1: {
-      prices: [30, 40, 35, 50, 49, 60, 70, 91, 125],
-      dates: [
-        "2022-01-01",
-        "2022-01-02",
-        "2022-01-03",
-        "2022-01-04",
-        "2022-01-05",
-        "2022-01-06",
-        "2022-01-07",
-        "2022-01-08",
-        "2022-01-09",
-      ],
-    },
-  };
+  
 
   return (
     <>

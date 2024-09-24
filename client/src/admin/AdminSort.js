@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { BsFillGridFill, BsList } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { gridviews, sorting } from "../app/features/HeroSection/heroSlice";
+import { sorting } from "../app/features/HeroSection/heroSlice";
 
 const AdminSort = ({ currentPageData }) => {
-  const [view, setView] = useState(true);
   const dispatch = useDispatch();
-
-  const [sort, setSort] = useState("a-z");
 
   return (
     <Wrapper className="sort-section">

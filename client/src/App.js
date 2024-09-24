@@ -1,20 +1,12 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { StrictMode } from "react";
 import { GlobalStyle } from "./GlobalStyle";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import { ThemeProvider } from "styled-components";
-import { Provider, useSelector } from "react-redux";
-import { Store, persistor } from "./app/store";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
+
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 import Contact from "./pages/contact/Contact";
 import Home from "./pages/home/Home";
@@ -23,10 +15,6 @@ import Products from "./pages/product/Products";
 import Cart from "./components/cart/Cart";
 import ErrorPage from "./pages/error/ErrorPage";
 import Header from "./layout/Header";
-import { PersistGate } from "redux-persist/integration/react";
-import MyAdmin from "./admin/Myadmin";
-import Dashboard from "./admin/Dashboard";
-
 import AddProduct from "./admin/AddProduct";
 import BuyNow from "./pages/order/BuyNow";
 import AdminOrder from "./admin/AdminOrder";
@@ -35,7 +23,6 @@ import { useToast } from "@chakra-ui/react";
 import AdminNavbar from "./admin/AdminNavbar";
 import AdminProducts from "./admin/Products";
 import Signup from "./components/account/Signup";
-import Cartbuy from "./components/cart/Cartbuy";
 const App = () => {
   const theme = {
     colors: {
