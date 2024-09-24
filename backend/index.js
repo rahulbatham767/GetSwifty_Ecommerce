@@ -8,16 +8,11 @@ const productRoutes = require("./Routes/productRoutes");
 const userRoutes = require("./Routes/userRoutes");
 const cartRoutes = require("./Routes/cartRoutes");
 const orderRoutes = require("./Routes/orderRoutes");
-const paymentRoute = require("./Routes/paymentRoute");
 const categoryRoutes = require("./Routes/categoryRoutes");
 const reviewRoutes = require("./Routes/reviewRoutes");
-
-const shortid = require("shortid");
-const path = require("path");
 const cors = require("cors");
 // Load environment variables from .env file
 dotenv.config();
-
 // Create Express app
 const app = express();
 
@@ -30,11 +25,12 @@ app.use(
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI, {
-    dbname: "Ecommerce",
+    dbName: "Ecommerce",
   })
   .then(() => {
+    const PORT = process.env.PORT || 5000; // Fallback to 5000 if PORT is undefined
     app.listen(PORT, () => {
-      console.log(`Server is running on port http://localhost:${PORT}`);
+      console.log(`Server is running on http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
