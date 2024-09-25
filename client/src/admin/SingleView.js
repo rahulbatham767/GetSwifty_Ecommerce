@@ -1,32 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { TbReplace, TbTruckDelivery } from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
-import PageNavigation from "../pages/singleProduct/PageNavigation";
 import Star from "../pages/singleProduct/Star";
 import { FormatPrice } from "../additional/FormatPrice";
-import AddToCart from "../pages/singleProduct/AddToCart";
-import MyImage from "../pages/singleProduct/MyImage";
-
 export const SingleView = ({ data }) => {
   const id = "Your Product Id after Update";
 
-  const Dispatch = useDispatch();
-  const {
-    category,
-    colors,
-    company,
-    description,
-    image,
-    name,
-    price,
-    reviews,
-    star,
-    stock,
-  } = data;
+  const { company, description, image, name, price, reviews, star, stock } =
+    data;
 
   return (
     <Wrapper>

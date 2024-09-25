@@ -2,23 +2,19 @@ import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import CartAmountToggle from "../../components/cart/CartAmountToggle";
-import ShowRazorPay from "../payment/ShowRazorPay";
+
 import { Button } from "../../styles/Button";
 import {
   AddToCartbuy,
-  BuyNow,
   checkout,
-  setDecrease,
-  setIncrease,
   ToastSet,
 } from "../../app/features/HeroSection/heroSlice";
 const AddToCart = ({ product }) => {
   const { id, colors, amount } = product;
   const [color, setColor] = useState(colors[0]);
   const dispatch = useDispatch();
-  const { productDetails } = useSelector((state) => state.hero);
 
   return (
     <Wrapper>
@@ -67,7 +63,6 @@ const AddToCart = ({ product }) => {
         }}
       >
         <Button className="btn">Buy Now</Button>
-        {/* <ShowRazorPay /> */}
       </NavLink>
     </Wrapper>
   );

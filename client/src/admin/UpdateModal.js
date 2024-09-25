@@ -21,7 +21,6 @@ import {
   FilterData,
   Update_Product,
   getData,
-  sorting,
 } from "../app/features/HeroSection/heroSlice";
 
 const UpdateModal = ({ id, elem }) => {

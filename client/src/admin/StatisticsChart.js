@@ -1,7 +1,6 @@
 import React from "react";
-import { Line, Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { Box, Container, Heading } from "@chakra-ui/react";
-import { Bar } from "react-chartjs-2";
 import MyChart from "./MyChart";
 import {
   Chart as ChartJS,

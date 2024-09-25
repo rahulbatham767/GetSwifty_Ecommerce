@@ -9,7 +9,6 @@ import {
   Select,
   Tbody,
   Text,
-  extendTheme,
   Tr,
   Checkbox,
   Th,
@@ -20,20 +19,10 @@ import { Order } from "../app/features/HeroSection/heroSlice";
 const AdminOrder = () => {
   const { orders } = useSelector((state) => state.hero);
 
-  const theme = extendTheme({
-    components: {
-      Input: {
-        baseStyle: {
-          fontSize: "16px", // Adjust the font size as needed
-        },
-      },
-    },
-  });
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(Order());
-    console.log(orders);
   }, [dispatch]);
 
   return (

@@ -20,7 +20,7 @@ import {
 } from "../app/features/HeroSection/heroSlice";
 const AdminProducts = () => {
   // Assuming state.hero contains an array of product data
-  const { Filter, data } = useSelector((state) => state.hero);
+  const { Filter,   } = useSelector((state) => state.hero);
   const [currentPage, setCurrentPage] = useState(0);
   const productsPerPage = 9;
   const pageCount = Math.ceil(Filter.length / productsPerPage);

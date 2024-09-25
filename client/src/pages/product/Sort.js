@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {   useState } from "react";
 import styled from "styled-components";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +10,7 @@ const Sort = () => {
   const [view, setView] = useState(true);
   const dispatch = useDispatch();
 
-  const [sort, setSort] = useState("a-z");
-
+ 
   return (
     <Wrapper className="sort-section">
       <div className="sorting-list--grid">

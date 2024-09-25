@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  FilterData,
-  FilterView,
-} from "../../app/features/HeroSection/heroSlice";
+import { useDispatch } from "react-redux";
+import { FilterView } from "../../app/features/HeroSection/heroSlice";
 import FilterSection from "./FilterSection";
 import Sort from "./Sort";
 import ProductList from "./ProductList";

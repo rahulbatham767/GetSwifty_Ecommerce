@@ -10,28 +10,17 @@ import {
   Center,
   Image,
   Input,
-  Badge,
-  Textarea,
   Text,
-  Button as Btn,
   Select,
   Heading,
   CardBody,
-  Toast,
 } from "@chakra-ui/react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../styles/Button";
 import { FormatPrice } from "../../additional/FormatPrice";
-import {
-  BuyNow_thunk,
-  ClearCheckout,
-} from "../../app/features/HeroSection/heroSlice";
-import { buynow } from "../../app/features/HeroSection/Api";
-import ShowRazorPay from "../payment/ShowRazorPay";
+import { BuyNow_thunk } from "../../app/features/HeroSection/heroSlice";
 const BuyNow = () => {
-  const Dispatch = useDispatch();
-
   const { addTocart, LoggedUser, productDetails } = useSelector(
     (state) => state.hero
   );
