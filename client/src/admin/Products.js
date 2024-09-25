@@ -20,7 +20,7 @@ import {
 } from "../app/features/HeroSection/heroSlice";
 const AdminProducts = () => {
   // Assuming state.hero contains an array of product data
-  const { Filter,   } = useSelector((state) => state.hero);
+  const { Filter } = useSelector((state) => state.hero);
   const [currentPage, setCurrentPage] = useState(0);
   const productsPerPage = 9;
   const pageCount = Math.ceil(Filter.length / productsPerPage);
@@ -203,7 +203,7 @@ const Wrapper = styled.section`
   }
 
   .card {
-    background-color: ${({ theme }) => theme.colors.bg};
+    background-color: #F6F8FA;
     border-radius: 1rem;
 
     .card-data {
@@ -218,11 +218,11 @@ const Wrapper = styled.section`
     }
 
     .card-data--price {
-      color: ${({ theme }) => theme.colors.helper};
+      color: #8490ff;
     }
 
     h3 {
-      color: ${({ theme }) => theme.colors.text};
+      color: rgba(29,29,29,0.8);
       text-transform: capitalize;
     }
 

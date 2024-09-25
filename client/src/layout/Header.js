@@ -24,7 +24,7 @@ const Header = () => {
 const MainHeader = styled.header`
   height: 10rem;
 
-  background-color: ${({ theme }) => theme.colors.bg};
+  background-color: #f6f8fa;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,7 +33,7 @@ const MainHeader = styled.header`
   .logo {
     height: 5rem;
   }
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+  @media (max-width: 768px) {
   }
 `;
 export default Header;

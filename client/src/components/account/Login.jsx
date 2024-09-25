@@ -5,7 +5,6 @@ import {
   Card,
   FormControl,
   FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Input,
   Text,
@@ -117,7 +116,7 @@ function Login() {
           </Link>
         </Text>
         <Button
-          // colorScheme="blue"
+          
           padding={"2rem"}
           mt={"2rem"}
           onClick={handleLogin}

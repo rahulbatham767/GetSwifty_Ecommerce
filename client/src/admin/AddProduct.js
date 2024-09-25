@@ -24,7 +24,7 @@ const AddProduct = () => {
   const [colors, setColors] = useState("");
   const [company, setCompany] = useState("");
   const [stars, setstars] = useState("");
-  const handleImageChange = (index: 0, value) => {
+  const handleImageChange = (index, value) => {
     const newImages = [...image];
     newImages[index] = value;
     setImage(newImages);

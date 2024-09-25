@@ -59,7 +59,7 @@ const Wrapper = styled.section`
   }
 
   .card {
-    background-color: ${({ theme }) => theme.colors.bg};
+    background-color: #f6f8fa;
     border-radius: 1rem;
 
     .card-data {
@@ -74,11 +74,11 @@ const Wrapper = styled.section`
     }
 
     .card-data--price {
-      color: ${({ theme }) => theme.colors.helper};
+      color: #8490ff;
     }
 
     h3 {
-      color: ${({ theme }) => theme.colors.text};
+      color: rgba(29,29,29,0.8);
       text-transform: capitalize;
     }
 

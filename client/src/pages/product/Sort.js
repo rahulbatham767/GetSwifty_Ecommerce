@@ -1,4 +1,4 @@
-import React, {   useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,10 +7,9 @@ import { gridviews, sorting } from "../../app/features/HeroSection/heroSlice";
 
 const Sort = () => {
   const { gridview, Filter } = useSelector((state) => state.hero);
-  const [view, setView] = useState(true);
+
   const dispatch = useDispatch();
 
- 
   return (
     <Wrapper className="sort-section">
       <div className="sorting-list--grid">
@@ -81,7 +80,7 @@ const Wrapper = styled.section`
       font-size: 1.6rem;
     }
     .active {
-      background-color: ${({ theme }) => theme.colors.black};
+      background-color: #212529;
       color: #fff;
     }
   }

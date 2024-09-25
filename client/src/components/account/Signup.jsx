@@ -96,13 +96,7 @@ const Signup = () => {
               onChange={handleChange}
             />
           </FormControl>
-          <Button
-            type="submit"
-            // colorScheme="teal"
-            size="md"
-            padding={"2rem"}
-            marginTop={"2rem"}
-          >
+          <Button type="submit" size="md" padding={"2rem"} marginTop={"2rem"}>
             Signup
           </Button>
         </Stack>

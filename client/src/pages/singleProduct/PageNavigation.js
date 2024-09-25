@@ -12,7 +12,7 @@ const PageNavigation = ({ title }) => {
 
 const Wrapper = styled.section`
   height: 10rem;
-  background-color: ${({ theme }) => theme.colors.bg};
+  background-color: #F6F8FA;
   display: flex;
   justify-content: flex-start;
   align-items: center;

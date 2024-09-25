@@ -98,7 +98,7 @@ const FilterSection = () => {
             style={{
               display: "flex",
               alignItems: "center",
-              boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px;",
+              boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
             }}
             className="search-button-box"
           >
@@ -228,18 +228,18 @@ const Wrapper = styled.section`
 
       button {
         border: none;
-        background-color: ${({ theme }) => theme.colors.white};
+        background-color: #fff;
         text-transform: capitalize;
         cursor: pointer;
 
         &:hover {
-          color: ${({ theme }) => theme.colors.btn};
+          color: rgb(98 84 243);
         }
       }
 
       .active {
         border-bottom: 1px solid #000;
-        color: ${({ theme }) => theme.colors.btn};
+        color: rgb(98 84 243);
       }
     }
   }
@@ -247,7 +247,7 @@ const Wrapper = styled.section`
   .filter-company--select {
     padding: 0.3rem 1.2rem;
     font-size: 1.6rem;
-    color: ${({ theme }) => theme.colors.text};
+    color: rgba(29, 29, 29, 0.8);
     text-transform: capitalize;
   }
 

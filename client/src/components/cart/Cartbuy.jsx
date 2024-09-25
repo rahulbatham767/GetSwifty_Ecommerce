@@ -8,22 +8,13 @@ import {
   FormLabel,
   Center,
   Input,
-  Text,
-  Button as Btn,
   Select,
   Heading,
-  CardBody,
-  Toast,
 } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../../styles/Button";
-import { FormatPrice } from "../../additional/FormatPrice";
 import { BuyNow_thunk } from "../../app/features/HeroSection/heroSlice";
 
 const Cartbuy = () => {
-  const Dispatch = useDispatch();
-
   const { addTocart, productDetails } = useSelector((state) => state.hero);
   const [value, setValue] = useState("1");
 
@@ -91,21 +82,21 @@ const Cartbuy = () => {
       [name]: value,
     });
   };
-  const dispatch = useDispatch();
-  const checkout = async () => {
-    const formData = {
-      user: id,
-      userId: id,
-      productId: id + color,
-      quantity: amount,
-      totalPrice: product.price * amount,
-      fname: data.fname,
-      lname: data.lname,
-      phone: data.phone,
-      shippingAddress,
-    };
-    dispatch(BuyNow_thunk(formData));
-  };
+  // const dispatch = useDispatch();
+  // const checkout = async () => {
+  //   const formData = {
+  //     user: id,
+  //     userId: id,
+  //     productId: id + color,
+  //     quantity: amount,
+  //     totalPrice: product.price * amount,
+  //     fname: data.fname,
+  //     lname: data.lname,
+  //     phone: data.phone,
+  //     shippingAddress,
+  //   };
+  //   dispatch(BuyNow_thunk(formData));
+  // };
 
   return (
     <Center>

@@ -115,7 +115,7 @@ const Wrapper = styled.section`
 
     .amount-style {
       font-size: 2.4rem;
-      color: ${({ theme }) => theme.colors.btn};
+      color: rgb(98 84 243);
     }
   }
 `;

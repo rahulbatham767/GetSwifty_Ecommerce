@@ -1,20 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useEffect, useMemo } from "react";
-import { Navigate, NavLink, redirect, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 import { Button } from "../../styles/Button";
-import {
-  checkout,
-  clearCart,
-  ToastSet,
-} from "../../app/features/HeroSection/heroSlice";
+import { clearCart, ToastSet } from "../../app/features/HeroSection/heroSlice";
 import { Box, Heading, Text, VStack, HStack } from "@chakra-ui/react";
 import { FormatPrice } from "../../additional/FormatPrice";
 
 const Cart = () => {
   const { cart, loggedIn } = useSelector((state) => state.hero);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -224,7 +219,7 @@ const Wrapper = styled.section`
 
     .amount-style {
       font-size: 2.4rem;
-      color: ${({ theme }) => theme.colors.btn};
+      color: rgb(98 84 243);
     }
   }
 
@@ -262,11 +257,11 @@ const Wrapper = styled.section`
 
     div p:last-child {
       font-weight: bold;
-      color: ${({ theme }) => theme.colors.heading};
+      color: rgb(24 24 29);
     }
   }
 
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+  @media (max-width: 768px) {
     .grid-five-column {
       grid-template-columns: 1.5fr 1fr 0.5fr;
     }

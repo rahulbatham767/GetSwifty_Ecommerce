@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FaTrash } from "react-icons/fa";
 import CartAmountToggle from "./CartAmountToggle";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FormatPrice } from "../../additional/FormatPrice";
-import {
-  removeItem,
-  setDecrease,
-  setIncrease,
-} from "../../app/features/HeroSection/heroSlice";
+import { removeItem } from "../../app/features/HeroSection/heroSlice";
 
 const CartItem = ({ elem }) => {
   const { id, name, image, color, price, amount } = elem;
 
-  const { cart } = useSelector((state) => state.hero);
+  // const { cart } = useSelector((state) => state.hero);
 
   const dispatch = useDispatch();
 

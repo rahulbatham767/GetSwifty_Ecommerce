@@ -16,19 +16,10 @@ const AdminNavbar = () => {
       </Heading>
       {user?.isAdmin ? (
         <Box fontSize="md">
-          {/* <NavLink
-            to="/admin/dashboard"
-            style={{ marginRight: "3rem" }}
-            className="me-6"
-          >
-            Dashboard
-          </NavLink> */}
           <NavLink to="/admin/products" style={{ marginRight: "3rem" }}>
             Products
           </NavLink>
-          {/* <NavLink to="/admin/orders" style={{ marginRight: "3rem" }}>
-            Orders
-          </NavLink> */}
+
           <NavLink to="/admin/add-product" style={{ marginRight: "3rem" }}>
             Add Product
           </NavLink>
@@ -40,7 +31,6 @@ const AdminNavbar = () => {
       <Spacer />
       {user?.isAdmin ? (
         <Button
-          // colorScheme="red"
           p="6"
           onClick={() => {
             dispatch(Logout());
@@ -50,7 +40,7 @@ const AdminNavbar = () => {
           Logout
         </Button>
       ) : (
-        <Button colorScheme="red" p="6" as={Link} to={"/login"}>
+        <Button p="6" as={Link} to={"/login"}>
           Login
         </Button>
       )}

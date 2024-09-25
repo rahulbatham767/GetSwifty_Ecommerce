@@ -87,7 +87,7 @@ border-bottom: 1px solid gray;
   grid-template-rows: repeat(4, 1fr);
 }
 
-@media (max-width: ${({ theme }) => theme.media.mobile}) {
+@media (max-width: 768px) {
   display: flex;
   flex-direction: column;
   order: 1;

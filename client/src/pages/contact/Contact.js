@@ -1,126 +1,22 @@
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useState } from "react";
 const Contact = () => {
-  const Wrapper = styled.section`
-    .card {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      width: 350px;
-      display: flex;
-      flex-direction: column;
-      margin: auto;
-    }
-
-    .title {
-      font-size: 24px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .form {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .group {
-      position: relative;
-    }
-
-    .form .group label {
-      font-size: 14px;
-      color: rgb(99, 102, 102);
-      position: absolute;
-      top: -10px;
-      left: 10px;
-      background-color: #fff;
-      transition: all 0.3s ease;
-    }
-
-    .form .group input,
-    .form .group textarea {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      margin-bottom: 20px;
-      outline: 0;
-      width: 100%;
-      background-color: transparent;
-    }
-
-    .form .group input:placeholder-shown + label,
-    .form .group textarea:placeholder-shown + label {
-      top: 10px;
-      background-color: transparent;
-    }
-
-    .form .group input:focus,
-    .form .group textarea:focus {
-      border-color: #3366cc;
-    }
-
-    .form .group input:focus + label,
-    .form .group textarea:focus + label {
-      top: -10px;
-      left: 10px;
-      background-color: #fff;
-      color: #3366cc;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    .form .group textarea {
-      resize: none;
-      height: 100px;
-    }
-
-    .form button {
-      background-color: #3366cc;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .form button:hover {
-      background-color: #27408b;
-    }
-
-    padding: 9rem 0 5rem 0;
-    text-align: center;
-
-    .container {
-      margin-top: 6rem;
-
-      .contact-form {
-        max-width: 50rem;
-        margin: auto;
-
-        .contact-inputs {
-          display: flex;
-          flex-direction: column;
-          gap: 3rem;
-
-          input[type="submit"] {
-            cursor: pointer;
-            transition: all 0.2s;
-
-            &:hover {
-              background-color: ${({ theme }) => theme.colors.white};
-              border: 1px solid ${({ theme }) => theme.colors.btn};
-              color: ${({ theme }) => theme.colors.btn};
-              transform: scale(0.9);
-            }
-          }
-        }
-      }
-    }
-  `;
   const { isAuthenticated, user } = useAuth0();
+  const [formValues, setFormValues] = useState({
+    username: isAuthenticated ? user.name : "",
+    email: isAuthenticated ? user.email : "",
+    message: "",
+  });
+
+  // Step 2: Create the onChange handler
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value, // Update the specific form field
+    });
+  };
   return (
     <Wrapper>
       <h2>Contact Page</h2>
@@ -146,34 +42,41 @@ const Contact = () => {
                 placeholder=""
                 type="text"
                 name="username"
+                className="fs-3"
                 required
                 autoComplete="off"
-                value={isAuthenticated ? user.name : ""}
+                value={formValues.username}
+                onChange={handleChange}
               />
-              <label for="name">Name</label>
+              <label htmlFor="name">Name</label>
             </div>
             <div className="group">
               <input
                 placeholder=""
                 type="email"
                 id="email"
+                className="fs-3"
                 name="email"
                 required=""
                 autoComplete="off"
-                value={isAuthenticated ? user.email : ""}
+                value={formValues.email}
+                onChange={handleChange}
               />
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
             </div>
             <div className="group">
               <textarea
                 placeholder=""
                 id="comment"
                 name="message"
+                className="fs-3"
                 rows="5"
                 required=""
+                value={formValues.message}
+                onChange={handleChange}
                 autoComplete="off"
               ></textarea>
-              <label for="comment">Enter Your Message</label>
+              <label htmlFor="comment">Enter Your Message</label>
             </div>
             <button type="submit">Submit</button>
           </form>
@@ -182,5 +85,123 @@ const Contact = () => {
     </Wrapper>
   );
 };
+const Wrapper = styled.section`
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
 
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .group {
+    position: relative;
+  }
+
+  .form .group label {
+    font-size: 14px;
+    color: rgb(99, 102, 102);
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .form .group input,
+  .form .group textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    outline: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .form .group input:placeholder-shown + label,
+  .form .group textarea:placeholder-shown + label {
+    top: 10px;
+    background-color: transparent;
+  }
+
+  .form .group input:focus,
+  .form .group textarea:focus {
+    border-color: #3366cc;
+  }
+
+  .form .group input:focus + label,
+  .form .group textarea:focus + label {
+    top: -10px;
+    left: 10px;
+    background-color: #fff;
+    color: #3366cc;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .form .group textarea {
+    resize: none;
+    height: 100px;
+  }
+
+  .form button {
+    background-color: #3366cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .form button:hover {
+    background-color: #27408b;
+  }
+
+  padding: 9rem 0 5rem 0;
+  text-align: center;
+
+  .container {
+    margin-top: 6rem;
+
+    .contact-form {
+      max-width: 50rem;
+      margin: auto;
+
+      .contact-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        input[type="submit"] {
+          cursor: pointer;
+          transition: all 0.2s;
+
+          &:hover {
+            background-color: #fff;
+            border: 1px solid rgb(98 84 243);
+            color: rgb(98 84 243);
+            transform: scale(0.9);
+          }
+        }
+      }
+    }
+  }
+`;
 export default Contact;

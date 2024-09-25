@@ -3,9 +3,7 @@ import { Link, Navigate, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "../styles/Button";
-import NavDrop from "../components/NavDop";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../app/features/HeroSection/heroSlice";
 
@@ -76,7 +74,6 @@ const Navbar = () => {
                 </button>
               </Link>
             </li>
-           
           )}
           <li>
             <NavLink
@@ -127,12 +124,12 @@ const Nav = styled.nav`
         font-size: 1.8rem;
         font-weight: 500;
         text-transform: uppercase;
-        color: ${({ theme }) => theme.colors.black};
+        color: #212529;
         transition: color 0.3s linear;
       }
       &:hover,
       &:active {
-        color: ${({ theme }) => theme.colors.helper};
+        color: #8490ff;
       }
     }
   }
@@ -140,7 +137,7 @@ const Nav = styled.nav`
     display: none;
     background-color: transparent;
     cursor: pointer;
-    border: ${({ theme }) => theme.colors.black};
+    border: #212529;
   }
   .mobile-nav-icon[name="close-outline"] {
     display: none;
@@ -166,7 +163,7 @@ const Nav = styled.nav`
       place-items: center;
       top: -20%;
       left: 70%;
-      background-color: ${({ theme }) => theme.colors.helper};
+      background-color: #8490ff;
     }
   }
   .user-login--name {
@@ -177,15 +174,15 @@ const Nav = styled.nav`
     font-size: 1.4rem;
     padding: 0.8rem 1.4rem;
   }
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+  @media (max-width: 768px) {
     .mobile-navbar-btn {
       display: inline-block;
       z-index: 9999;
-      border: ${({ theme }) => theme.colors.black};
+      border: #212529;
 
       .mobile-nav-icon {
         font-size: 4.2rem;
-        color: ${({ theme }) => theme.colors.black};
+        color: #212529;
       }
     }
 
@@ -195,7 +192,7 @@ const Nav = styled.nav`
       position: absolute;
       top: 30%;
       right: 10%;
-      color: ${({ theme }) => theme.colors.black};
+      color: #212529;
       z-index: 9999;
     }
     .active .close-outline {
