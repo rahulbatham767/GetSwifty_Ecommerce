@@ -117,7 +117,7 @@ function Login() {
           </Link>
         </Text>
         <Button
-          colorScheme="blue"
+          // colorScheme="blue"
           padding={"2rem"}
           mt={"2rem"}
           onClick={handleLogin}

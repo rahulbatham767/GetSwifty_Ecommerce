@@ -98,7 +98,7 @@ const Signup = () => {
           </FormControl>
           <Button
             type="submit"
-            colorScheme="teal"
+            // colorScheme="teal"
             size="md"
             padding={"2rem"}
             marginTop={"2rem"}

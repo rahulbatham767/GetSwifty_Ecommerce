@@ -40,7 +40,7 @@ const AdminNavbar = () => {
       <Spacer />
       {user?.isAdmin ? (
         <Button
-          colorScheme="red"
+          // colorScheme="red"
           p="6"
           onClick={() => {
             dispatch(Logout());

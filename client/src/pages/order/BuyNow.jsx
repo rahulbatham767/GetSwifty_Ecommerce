@@ -285,7 +285,7 @@ const BuyNow = () => {
               </Text>
               <Button
                 variant="ghost"
-                colorScheme="blue"
+                // colorScheme="blue"
                 style={{ marginTop: "2rem" }}
                 onClick={checkout}
               >
