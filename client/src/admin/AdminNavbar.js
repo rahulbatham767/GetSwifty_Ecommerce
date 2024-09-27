@@ -15,17 +15,23 @@ const AdminNavbar = () => {
     try {
       await dispatch(Logout());
 
-      toast.error(user.username + " You are successfully Logout");
+      toast.error(user.username + " You are successfully Logout", {
+        style: { fontSize: "12px" },
+      });
     } catch (error) {
-      toast.error("Logout failed, please try again.");
+      toast.error("Logout failed, please try again.", {
+        style: { fontSize: "12px" },
+      });
     }
   };
 
   return (
     <Flex p="6" bg="blue.500" color="white" alignItems="center">
-      <Heading as="h2" size="md" marginRight="6">
-        Admin Panel
-      </Heading>
+      <NavLink to={"/admin/products"}>
+        <Heading as="h2" size="md" marginRight="6">
+          AdminPanel
+        </Heading>
+      </NavLink>
       {user?.isAdmin ? (
         <Box fontSize="md">
           <NavLink to="/admin/products" style={{ marginRight: "3rem" }}>

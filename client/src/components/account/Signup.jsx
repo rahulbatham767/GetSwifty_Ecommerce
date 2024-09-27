@@ -36,13 +36,19 @@ const Signup = () => {
       const response = dispatch(Register(formData)).unwrap();
       console.log(response);
       if (response.ok) {
-        toast(response.user.username + " You have successfully registered");
+        toast(response.user.username + " You have successfully registered", {
+          style: { fontSize: "12px" },
+        });
       } else {
-        toast("Signup failed ");
+        toast("Signup failed ", {
+          style: { fontSize: "12px" },
+        });
         throw new Error("Signup failed.");
       }
     } catch (error) {
-      toast("An error Occured While creating your account ");
+      toast("An error Occured While creating your account ", {
+        style: { fontSize: "12px" },
+      });
       throw new Error("An error occurred while creating your account " + error);
     }
   };

@@ -126,7 +126,7 @@ const App = () => {
               path="/admin"
               element={<Navigate to="/admin/login" replace />}
             />
-            {LoggedIn && user?.role === "admin" ? (
+            {LoggedIn && user?.isAdmin ? (
               <>
                 {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
                 <Route path="/admin/products" element={<AdminProducts />} />
