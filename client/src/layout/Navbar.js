@@ -6,6 +6,7 @@ import { CgMenu, CgClose } from "react-icons/cg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../app/features/HeroSection/heroSlice";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [menuIcon, setMenuIcon] = useState(false);
@@ -59,6 +60,11 @@ const Navbar = () => {
                   style={{ fontSize: "2.2rem" }}
                   onClick={() => {
                     dispatch(Logout());
+                    toast(" You are successfully Logout", {
+                      style: {
+                        fontSize: "16px",
+                      },
+                    });
                     <Navigate to={"/login"} />;
                   }}
                 >

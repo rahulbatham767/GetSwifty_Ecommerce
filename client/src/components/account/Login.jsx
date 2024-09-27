@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Card,
+  Container,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -12,6 +13,7 @@ import {
 import { useDispatch } from "react-redux";
 import { User_Login } from "../../app/features/HeroSection/heroSlice";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -57,12 +59,15 @@ function Login() {
     // Dispatch login action if form is valid
     if (isValid) {
       try {
-        console.log(formData);
         const response = await dispatch(User_Login(formData)).unwrap();
         if (response.user.isAdmin && location.pathname.startsWith("/admin")) {
           navigate("/admin/products");
-          console.log("dashboard");
-        } else {
+        } else if (response.user.role === "user") {
+          toast("You are Successfully LoggedIn " + response.user.username, {
+            style: {
+              fontSize: "12px",
+            },
+          });
           navigate("/");
         }
         console.log(response.user.isAdmin, location.pathname);
@@ -73,16 +78,15 @@ function Login() {
   };
 
   return (
-    <Card
+    <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         height: "80vh",
       }}
     >
-      <Box>
+      <Box m={"auto"}>
         <FormControl isInvalid={formErrors.emailError}>
           <FormLabel>Email</FormLabel>
           <Input
@@ -115,16 +119,11 @@ function Login() {
             Sign up
           </Link>
         </Text>
-        <Button
-          
-          padding={"2rem"}
-          mt={"2rem"}
-          onClick={handleLogin}
-        >
+        <Button padding={"2rem"} mt={"2rem"} onClick={handleLogin}>
           Login
         </Button>
       </Box>
-    </Card>
+    </Box>
   );
 }
 

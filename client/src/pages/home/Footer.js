@@ -99,9 +99,9 @@ const Footer = () => {
               <h3>Talk to us Today</h3>
             </div>
             <div>
-              <Button className="btn hireme-btn">
-                <NavLink to={"/getcontact "}> GET STARTED</NavLink>
-              </Button>
+              <NavLink to={"/product"}>
+                <Button className="btn hireme-btn">GET STARTED</Button>
+              </NavLink>
             </div>
           </div>
         </section>

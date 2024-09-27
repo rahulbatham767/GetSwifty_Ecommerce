@@ -8,10 +8,10 @@ import {
   Input,
   Stack,
   Heading,
-  useToast,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { Register } from "../../app/features/HeroSection/heroSlice";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -21,8 +21,6 @@ const Signup = () => {
     isAdmin: false,
     password: "",
   });
-
-  const toast = useToast();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,24 +36,14 @@ const Signup = () => {
       const response = dispatch(Register(formData)).unwrap();
       console.log(response);
       if (response.ok) {
-        toast({
-          title: "Signup successful.",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-        });
-        // Optionally, redirect the user or clear the form
+        toast(response.user.username + " You have successfully registered");
       } else {
+        toast("Signup failed ");
         throw new Error("Signup failed.");
       }
     } catch (error) {
-      toast({
-        title: "An error occurred.",
-        description: error.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
+      toast("An error Occured While creating your account ");
+      throw new Error("An error occurred while creating your account " + error);
     }
   };
 

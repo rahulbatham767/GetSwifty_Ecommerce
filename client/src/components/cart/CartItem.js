@@ -2,7 +2,7 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import CartAmountToggle from "./CartAmountToggle";
 import { useDispatch } from "react-redux";
-import { FormatPrice } from "../../additional/FormatPrice";
+import { FormatPrice, NameSlice } from "../../additional/FormatPrice";
 import { removeItem } from "../../app/features/HeroSection/heroSlice";
 
 const CartItem = ({ elem }) => {
@@ -24,7 +24,7 @@ const CartItem = ({ elem }) => {
             </figure>
           </div>
           <div>
-            <p>{name}</p>
+            <p>{NameSlice(name)}</p>
             <div className="color-div">
               <p>color:</p>
               <div

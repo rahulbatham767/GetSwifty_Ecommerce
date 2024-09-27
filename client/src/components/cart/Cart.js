@@ -4,9 +4,10 @@ import { useEffect, useMemo } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 import { Button } from "../../styles/Button";
-import { clearCart, ToastSet } from "../../app/features/HeroSection/heroSlice";
+import { clearCart } from "../../app/features/HeroSection/heroSlice";
 import { Box, Heading, Text, VStack, HStack } from "@chakra-ui/react";
 import { FormatPrice } from "../../additional/FormatPrice";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const { cart, loggedIn } = useSelector((state) => state.hero);
@@ -20,12 +21,9 @@ const Cart = () => {
 
   const checkout = () => {
     if (!loggedIn) {
-      dispatch(
-        ToastSet({
-          toast: "Checkout Functionality is not Available Right Now",
-          status: "error",
-        })
-      );
+      toast.error("Checkout Functionality is not Available Right Now", {
+        style: { fontSize: "13px" },
+      });
     }
   };
 
@@ -49,9 +47,9 @@ const Cart = () => {
   }
 
   return (
-    <Wrapper className="container">
+    <Wrapper style={{ width: "135rem" }} className="mx-auto">
       <HStack>
-        <div className="">
+        <div>
           <div className="cart_heading grid grid-five-column">
             <p>Item</p>
             <p className="cart-hide">Price</p>

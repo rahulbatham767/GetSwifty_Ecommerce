@@ -14,6 +14,16 @@ import {
 import { FormatPrice } from "../../additional/FormatPrice";
 import { Button } from "../../styles/Button";
 import { CgSearch } from "react-icons/cg";
+import {
+  Box,
+  Flex,
+  Heading,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  Text,
+} from "@chakra-ui/react";
 
 const FilterSection = () => {
   const [searchText, setSearchText] = useState("");
@@ -170,19 +180,36 @@ const FilterSection = () => {
           ))}
         </div>
       </div>
-      <div className="filter_price">
-        <h3>Price</h3>
-        <p>{FormatPrice(filters.price)}</p>
-        <input
-          type="range"
+      <Box className="filter_price" mb={4}>
+        <Heading as="h3" size="md" mb={2}>
+          Price
+        </Heading>
+
+        {/* Display the current selected price */}
+        <Text mb={2}>{FormatPrice(filters.price)}</Text>
+
+        {/* Slider with min/max labels */}
+        <Flex justify="space-between" mb={2}>
+          <Text>{FormatPrice(minPrice)}</Text>
+          <Text>{FormatPrice(maxPrice)}</Text>
+        </Flex>
+
+        {/* Price range slider */}
+        <Slider
+          aria-label="price-slider"
           name="price"
           min={minPrice}
           max={maxPrice}
-          step="100"
+          step={100}
           value={selectedPrice}
           onChange={handlePriceChange}
-        />
-      </div>
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+      </Box>
       <div className="filter-clear">
         <Button className="btn" onClick={handleClearFilters}>
           Clear Filters

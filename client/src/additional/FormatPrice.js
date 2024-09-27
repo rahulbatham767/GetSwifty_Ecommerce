@@ -4,3 +4,10 @@ export const FormatPrice = (price) => {
     currency: "INR",
   }).format(price);
 };
+
+export const NameSlice = (str) => {
+  if (str.length > 20) {
+    return str.slice(0, 30) + "...";
+  }
+  return str;
+};

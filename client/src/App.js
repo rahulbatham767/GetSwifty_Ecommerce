@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { StrictMode } from "react";
 import { GlobalStyle } from "./GlobalStyle";
@@ -6,7 +6,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
-
+import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 import Contact from "./pages/contact/Contact";
 import Home from "./pages/home/Home";
@@ -19,10 +19,10 @@ import AddProduct from "./admin/AddProduct";
 import BuyNow from "./pages/order/BuyNow";
 import AdminOrder from "./admin/AdminOrder";
 import Login from "./components/account/Login";
-import { useToast } from "@chakra-ui/react";
 import AdminNavbar from "./admin/AdminNavbar";
 import AdminProducts from "./admin/Products";
 import Signup from "./components/account/Signup";
+import { ToastContainer } from "react-toastify";
 const App = () => {
   const theme = {
     colors: {
@@ -48,11 +48,19 @@ const App = () => {
     },
   };
   const { user } = useSelector((state) => state.hero.LoggedUser);
-  const { LoggedIn, toastMsg } = useSelector((state) => state.hero);
-  const toast = useToast();
+  const { LoggedIn } = useSelector((state) => state.hero);
+
   const customTheme = extendTheme({
     fonts: {
       heading: "Roboto", // You can customize the font family here
+    },
+    colors: {
+      green: {
+        500: "#38A169", // Define color variants for green and red
+      },
+      red: {
+        500: "#E53E3E",
+      },
     },
     sizes: {
       modal: {
@@ -71,12 +79,19 @@ const App = () => {
     components: {
       Input: {
         baseStyle: {
-          padding: "12px",
-          fontSize: "14px",
+          padding: "10px",
+          fontSize: "12px",
           _placeholder: {
-            fontSize: "14px",
+            fontSize: "12px",
           },
           textTransform: "lowercase",
+        },
+      },
+      Alert: {
+        baseStyle: {
+          containerStyle: {
+            colorScheme: "green", // Default color scheme
+          },
         },
       },
     },
@@ -84,31 +99,22 @@ const App = () => {
 
   const location = useLocation();
 
-  useEffect(() => {
-    if (toastMsg) {
-      toast({
-        title: toastMsg?.toast || "Default Message",
-        status: toastMsg?.status || "info",
-        duration: 5000,
-        isClosable: true,
-        position: "top-right",
-
-        containerStyle: {
-          fontSize: "14px",
-          backgroundColor:
-            toastMsg.status === "success" ? "green.500" : "red.500",
-          color: "white",
-          borderRadius: "md",
-          padding: "1rem",
-          marginBottom: "2rem",
-        },
-      });
-    }
-  }, [toastMsg, toast]);
   // Check if the current path is under the /admin route
 
   return (
     <StrictMode>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       <ChakraProvider theme={customTheme}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
@@ -136,7 +142,7 @@ const App = () => {
             <Route path="/product" element={<Products />} />
             {!LoggedIn && <Route path="/login" element={<Login />} />}
             {!LoggedIn && <Route path="/register" element={<Signup />} />}
-            {!LoggedIn && <Route path="/login" element={<Login />} />}
+
             {/* {LoggedIn && <Route path="/cartbuy" element={<Cartbuy />} />} */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/singleproduct/:id" element={<SingleProduct />} />

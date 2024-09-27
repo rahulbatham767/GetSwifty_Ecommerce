@@ -2,19 +2,23 @@ import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartAmountToggle from "../../components/cart/CartAmountToggle";
 
 import { Button } from "../../styles/Button";
 import {
   AddToCartbuy,
   checkout,
-  ToastSet,
 } from "../../app/features/HeroSection/heroSlice";
+import { toast } from "react-toastify";
 const AddToCart = ({ product }) => {
-  const { id, colors, amount } = product;
+  const { id, colors } = product;
   const [color, setColor] = useState(colors[0]);
   const dispatch = useDispatch();
+  const amount = useSelector((state) => {
+    const cartItem = state.hero.cart.find((item) => item.id === id);
+    return cartItem ? cartItem.amount : 1; // Default to 1 if not found in the cart
+  });
 
   return (
     <Wrapper>
@@ -35,7 +39,7 @@ const AddToCart = ({ product }) => {
       </div>
       {/* Add To Cart */}
 
-      <CartAmountToggle amount={amount} id={id + color} />
+      <CartAmountToggle amount={amount} id={id} />
 
       <NavLink
         to="/cart"
@@ -44,7 +48,6 @@ const AddToCart = ({ product }) => {
         <Button className="btn">Add To Cart</Button>
       </NavLink>
       <NavLink
-        to="/buynow"
         style={{ marginLeft: "2rem" }}
         onClick={() => {
           dispatch(
@@ -57,7 +60,11 @@ const AddToCart = ({ product }) => {
                 toast: "Checkout Functionality is not Available",
                 status: "warning",
               },
-              ToastSet({})
+              toast.error("Checkout Functionality is not Available", {
+                style: {
+                  fontSize: "12px",
+                },
+              })
             )
           );
         }}

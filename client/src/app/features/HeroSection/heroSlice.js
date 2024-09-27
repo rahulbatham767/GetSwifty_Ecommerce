@@ -271,10 +271,7 @@ const heroSlice = createSlice({
     addTocart: [],
     colors: [],
     price: 0,
-    toastMsg: {
-      toast: "",
-      status: "",
-    },
+
     minPrice: 0,
     maxPrice: 0,
     gridview: false,
@@ -290,38 +287,32 @@ const heroSlice = createSlice({
   reducers: {
     // ... other reducers
     setIncrease: (state, action) => {
+      // Find and update the cart with the new quantity
       const updatedCart = state.cart.map((item) => {
         if (item.id === action.payload) {
-          let incAmount = item.amount + 1;
-          if (incAmount >= item.max) {
-            incAmount = item.max;
+          let newAmount = item.amount + 1;
+          if (newAmount > item.max) {
+            newAmount = item.max;
           }
-          return {
-            ...item,
-            amount: incAmount,
-          };
-        } else {
-          return item;
+          return { ...item, amount: newAmount };
         }
-      });
-      return { ...state, cart: updatedCart };
-    },
-    setDecrease: (state, action) => {
-      const id = action.payload;
-      const updatedCart = state.cart.map((item) => {
-        if (item.id === id && item.amount > 1) {
-          return {
-            ...item,
-            amount: item.amount - 1,
-          };
-        }
-        return item;
+        return item; // Return unchanged items
       });
 
-      return {
-        ...state,
-        cart: updatedCart,
-      };
+      // Return the updated state
+      return { ...state, cart: updatedCart };
+    },
+
+    setDecrease: (state, action) => {
+      const updatedCart = state.cart.map((item) => {
+        if (item.id === action.payload && item.amount > 1) {
+          return { ...item, amount: item.amount - 1 };
+        }
+        return item; // Return unchanged items
+      });
+
+      // Return the updated state
+      return { ...state, cart: updatedCart };
     },
     setFilter: (state, action) => {
       state.filters = action.payload;
@@ -354,13 +345,7 @@ const heroSlice = createSlice({
     checkout: (state, action) => {
       state.addTocart = action.payload;
     },
-    ToastSet: (state, action) => {
-      state.toastMsg = {
-        ...state.toastMsg,
-        toast: action.payload?.toast,
-        status: action.payload?.status,
-      };
-    },
+
     ClearCheckout: (state, action) => {
       state.addTocart = [];
     },
@@ -371,11 +356,6 @@ const heroSlice = createSlice({
       state.LoggedIn = false;
       localStorage.removeItem("token");
       state.LoggedUser = [];
-      state.toastMsg = {
-        ...state.toastMsg,
-        toast: "You are Succesfully Logout",
-        status: "success",
-      };
     },
   },
 
@@ -467,8 +447,6 @@ const heroSlice = createSlice({
       // Company filter
       .addCase(Company.fulfilled, (state, action) => {
         state.company = action.payload;
-        // state.originalFilterState.company = action.payload;
-        // console.log(action.payload);
       })
       .addCase(Company.pending, (state) => {
         state.loading = true;
@@ -481,8 +459,6 @@ const heroSlice = createSlice({
       // Colors
       .addCase(Colors.fulfilled, (state, action) => {
         state.colors = action.payload;
-        // state.originalFilterState.colors = action.payload;
-        // console.log(action.payload);
       })
 
       // AddToCartbuy
@@ -542,19 +518,9 @@ const heroSlice = createSlice({
       })
       .addCase(BuyNow_thunk.fulfilled, (state, action) => {
         state.addTocart = action.payload;
-        state.toastMsg = {
-          ...state.toastMsg,
-          toast: "Checkout Functionality is not Available Right Now",
-          status: "error",
-        };
       })
       .addCase(BuyNow_thunk.rejected, (state, action) => {
         state.selectItem = "false";
-        state.toastMsg = {
-          ...state.toastMsg,
-          toast: "All field are required",
-          status: "error",
-        };
       })
       // get Order
       .addCase(Order.fulfilled, (state, action) => {
@@ -582,11 +548,6 @@ const heroSlice = createSlice({
         console.log(action.payload);
         localStorage.setItem("token", action.payload.token);
         state.LoggedUser = action.payload;
-        state.toastMsg = {
-          ...state.toastMsg,
-          toast: action.payload.user.username + " You are Succesfully Login",
-          status: "success",
-        };
       })
       .addCase(User_Login.pending, (state) => {
         state.loading = true;
@@ -597,11 +558,7 @@ const heroSlice = createSlice({
       })
       .addCase(Register.fulfilled, (state, action) => {
         state.LoggedIn = true;
-        state.toastMsg = {
-          ...state.toastMsg,
-          toast: action.payload.username + " User Succesfully Registered",
-          status: "success",
-        };
+
         state.LoggedUser = action.payload;
       })
       .addCase(Register.pending, (state) => {
@@ -623,7 +580,7 @@ export const {
   setFilter,
   PriceGet,
   ClearCheckout,
-  ToastSet,
+
   Logout,
 } = heroSlice.actions;
 export default heroSlice.reducer;

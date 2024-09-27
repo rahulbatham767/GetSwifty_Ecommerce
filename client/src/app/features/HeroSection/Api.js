@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:5000/api/";
+const url = "https://get-swifty-ecommerce-backend.vercel.app/api/";
 
 export const login = async (data) => {
   const response = await axios.post(url + "users/login", data);

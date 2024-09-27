@@ -8,6 +8,7 @@ import {
 
 const CartAmountToggle = ({ amount, id }) => {
   const dispatch = useDispatch();
+
   return (
     <>
       <div className="cart-button">
