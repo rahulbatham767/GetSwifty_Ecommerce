@@ -87,8 +87,8 @@ const FilterSection = () => {
     setSelectedColor(col === selectedColor ? "" : col);
   };
 
-  const handlePriceChange = (e) => {
-    setSelectedPrice(parseInt(e.target.value, 10));
+  const handlePriceChange = (value) => {
+    setSelectedPrice(value);
   };
 
   const handleClearFilters = () => {
@@ -96,7 +96,7 @@ const FilterSection = () => {
     setSelectedCategory("");
     setSelectedCompany("");
     setSelectedColor("");
-    setSelectedPrice(0);
+    setSelectedPrice(minPrice);
     dispatch(clearFilter());
   };
 

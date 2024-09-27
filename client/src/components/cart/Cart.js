@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useEffect, useMemo } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import CartItem from "./CartItem";
 import { Button } from "../../styles/Button";
 import { clearCart } from "../../app/features/HeroSection/heroSlice";

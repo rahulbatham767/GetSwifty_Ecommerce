@@ -19,7 +19,9 @@ const AddToCart = ({ product }) => {
     const cartItem = state.hero.cart.find((item) => item.id === id);
     return cartItem ? cartItem.amount : 1; // Default to 1 if not found in the cart
   });
-
+  const handleAddToCart = () => {
+    dispatch(AddToCartbuy({ id, color, amount, product }));
+  };
   return (
     <Wrapper>
       <div className="colors">
@@ -41,10 +43,7 @@ const AddToCart = ({ product }) => {
 
       <CartAmountToggle amount={amount} id={id} />
 
-      <NavLink
-        to="/cart"
-        onClick={() => dispatch(AddToCartbuy({ id, color, amount, product }))}
-      >
+      <NavLink to="/cart" onClick={handleAddToCart}>
         <Button className="btn">Add To Cart</Button>
       </NavLink>
       <NavLink

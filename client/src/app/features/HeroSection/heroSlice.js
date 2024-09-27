@@ -287,32 +287,38 @@ const heroSlice = createSlice({
   reducers: {
     // ... other reducers
     setIncrease: (state, action) => {
-      // Find and update the cart with the new quantity
       const updatedCart = state.cart.map((item) => {
         if (item.id === action.payload) {
-          let newAmount = item.amount + 1;
-          if (newAmount > item.max) {
-            newAmount = item.max;
+          let incAmount = item.amount + 1;
+          if (incAmount >= item.max) {
+            incAmount = item.max;
           }
-          return { ...item, amount: newAmount };
+          return {
+            ...item,
+            amount: incAmount,
+          };
+        } else {
+          return item;
         }
-        return item; // Return unchanged items
       });
-
-      // Return the updated state
       return { ...state, cart: updatedCart };
     },
-
     setDecrease: (state, action) => {
+      const id = action.payload;
       const updatedCart = state.cart.map((item) => {
-        if (item.id === action.payload && item.amount > 1) {
-          return { ...item, amount: item.amount - 1 };
+        if (item.id === id && item.amount > 1) {
+          return {
+            ...item,
+            amount: item.amount - 1,
+          };
         }
-        return item; // Return unchanged items
+        return item;
       });
 
-      // Return the updated state
-      return { ...state, cart: updatedCart };
+      return {
+        ...state,
+        cart: updatedCart,
+      };
     },
     setFilter: (state, action) => {
       state.filters = action.payload;
@@ -463,23 +469,28 @@ const heroSlice = createSlice({
 
       // AddToCartbuy
       .addCase(AddToCartbuy.fulfilled, (state, action) => {
-        let newData = action.payload;
-        const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const newData = action.payload;
+
         // Check if the product already exists in the cart
-        const existingProduct = existingCart.find(
-          (item) => item._id === newData.id
+        const existingProduct = state.cart.find(
+          (item) => item.id === newData.id
         );
 
         if (existingProduct) {
-          const updatedCart = existingCart.map((item) =>
+          // Update the quantity if the product exists
+          const updatedCart = state.cart.map((item) =>
             item._id === newData.id
-              ? { ...item, amount: item.amount + newData.amount }
+              ? { ...item, amount: item.amount + newData.amount } // Increment the quantity
               : item
           );
           state.cart = updatedCart;
         } else {
-          state.cart = [...state.cart, action.payload];
+          // If the product does not exist, add it to the cart with the specified amount
+          state.cart = [...state.cart, { ...newData, amount: newData.amount }];
         }
+
+        // Optionally, update local storage
+        localStorage.setItem("cart", JSON.stringify(state.cart));
       })
       // RemoveItem
       .addCase(removeItem.fulfilled, (state, action) => {
